@@ -10,29 +10,38 @@ def encoder(password):
     return newPassword
 
 
+def decoder(encoded):
+    decoded_password = ''.join(str((int(digit) - 3 + 10) % 10) for digit in encoded)
+    return decoded_password
+# Jess created the decoder function that will decode the encode given back to its original password
+
+
 def main():
     """
     Menu for the encoder program written by Javier Noda.
     :return: Nothing
     """
-    print("Password Encoder/Decoder ")
-    print("Collaborators: Javier Noda, Jessica Chao")
+    encoded_password = ""
     while True:
         # Repeating menu.
-        print("\n1. Encode Password")
-        print("2. Decode Password")
+        print("\nMenu")
+        print("-------------")
+        print("1. Encode")
+        print("2. Decode")
         print("3. Quit")
-        answer = input("Type which option you choose: ")
+        answer = input("\nPlease enter an option: ")
         # If the answer is invalid in any way it will return invalid input.
         try:
             answer = int(answer)
             if answer == 1:
-                answer = input("\nType in the password to encode: ")
-                newPassword = encoder(answer)
-                print("Encoded password is: ", newPassword)
+                answer = input("Please enter your password to encode: ")
+                encoded_password = encoder(answer)
+                print("Your password has been encoded and stored!")
             elif answer == 2:
-                # Jessica this is where you would put your decoder function call replace the pass with it.
-                pass
+                decoded_password = decoder(encoded_password)
+                print(f"The encoded password is {encoded_password}, and the original password is {decoded_password}.")
+                # Jess-applied the decoder function in choice 2 when selected and will print both the encoded password and the decoded password
+
             elif answer == 3:
                 break
             else:
